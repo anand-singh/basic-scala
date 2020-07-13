@@ -12,7 +12,7 @@ lazy val root = (project in file("."))
     scalastyleFailOnError := true,
     scalastyleFailOnWarning := false,
     scalafmtOnCompile := true,
-    libraryDependencies ++= Seq(scalaTest % Test)
+    libraryDependencies ++= Seq(chimney, scalaTest % Test)
   )
   .settings(addCompilerPlugin(kindProjectorSetting))
 

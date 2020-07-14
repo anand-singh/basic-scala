@@ -5,10 +5,14 @@ import io.scalaland.chimney.dsl._
 
 object Request {
 
-  case class Create(name: String, email: String)
+  case class HttpRequest[A](requestId: UUID, body: A)
 
-  case class Find(id: UUID) extends AnyVal
+  case class HttpResponse[R](responseId: UUID, body: R)
 
-  def toUser: Create => User = _.into[User].withFieldComputed(_.id, _ => UUID.randomUUID()).transform
+  case class NewUser(name: String, email: String)
+
+  case class FindUser(id: UUID) extends AnyVal
+
+  def toUser: NewUser => User = _.into[User].withFieldComputed(_.id, _ => UUID.randomUUID()).transform
 
 }

@@ -20,7 +20,7 @@ object Mappable {
 object MappableConversion {
 
   implicit def futureMappable: Mappable[Future] = new Mappable[Future] {
-    def map[A, B](fa: Future[A])(f: A => B): Future[B] = fa.map(f)
+    def map[A, B](fa: Future[A])(f: A => B): Future[B]             = fa.map(f)
     def flatMap[A, B](fa: Future[A])(f: A => Future[B]): Future[B] = fa.flatMap(f)
   }
 

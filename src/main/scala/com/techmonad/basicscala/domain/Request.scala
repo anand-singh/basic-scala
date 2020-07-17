@@ -1,7 +1,8 @@
 package com.techmonad.basicscala.domain
 
 import java.util.UUID
-import io.scalaland.chimney.dsl._
+
+import scala.concurrent.Future
 
 object Request {
 
@@ -11,8 +12,8 @@ object Request {
 
   case class NewUser(name: String, email: String)
 
-  case class FindUser(id: UUID) extends AnyVal
-
-  def toUser: NewUser => User = _.into[User].withFieldComputed(_.id, _ => UUID.randomUUID()).transform
+  type WebRequest[A, B] = HttpRequest[A] => Future[HttpResponse[B]]
+  type TransformReq[A]  = HttpRequest[A] => A
+  type TransformRes[A]  = Future[A] => Future[HttpResponse[A]]
 
 }

@@ -3,13 +3,16 @@ package com.techmonad.basicscala.app
 import java.util.UUID
 
 import com.techmonad.basicscala.domain.Request.{HttpRequest, NewUser}
+import com.techmonad.basicscala.repo.UserRepo
 import com.techmonad.basicscala.service.UserService
+import com.techmonad.basicscala.util.MappableConversion._
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 object Application extends App {
 
-  val service = UserService()
+  val service: UserService[Future] = UserService(UserRepo())
 
   val uuid = UUID.randomUUID()
 

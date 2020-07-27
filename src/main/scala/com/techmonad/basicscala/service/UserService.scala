@@ -17,9 +17,9 @@ class UserService[F[_]: Mappable](repo: UserRepo[F]) extends ScalaLogger {
 
   import Mappable._
 
-  def findAllUsers: WebRequest[Unit, List[User]] = transformReq[Unit] andThen repo.all andThen transformRes[List[User]]
+  def findAllUsers: WebRequest[Unit, List[User]]   = transformReq[Unit] andThen repo.all andThen transformRes[List[User]]
   def findUserById: WebRequest[UUID, Option[User]] = transformReq[UUID] andThen repo.find andThen transformRes[Option[User]]
-  def registerUser: WebRequest[NewUser, User] = transformReq[NewUser] andThen toUser andThen repo.insert andThen transformRes[User]
+  def registerUser: WebRequest[NewUser, User]      = transformReq[NewUser] andThen toUser andThen repo.insert andThen transformRes[User]
 
   //Register User
   val toUser: NewUser => User = _.into[User].withFieldComputed(_.id, _ => UUID.randomUUID()).transform
@@ -28,8 +28,6 @@ class UserService[F[_]: Mappable](repo: UserRepo[F]) extends ScalaLogger {
   private def transformReq[A]: TransformReq[A] = _.tap(r => info(s"Request received ID - [${r.requestId}]")).body
   private def transformRes[A]: TransformRes[A] = _.map(b => HttpResponse[A](UUID.randomUUID(), b).tap(r => info(s"Response - [$r]")))
 }
-
-
 
 object UserService {
   def apply[F[_]: Mappable](repo: UserRepo[F]): UserService[F] = new UserService(repo)

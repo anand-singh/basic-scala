@@ -2,7 +2,7 @@ import Dependencies._
 import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleasePlugin.autoImport._
 
-ThisBuild / scalaVersion := "2.13.2"
+ThisBuild / scalaVersion := "2.13.5"
 ThisBuild / organization := "com.techmonad"
 ThisBuild / organizationName := "TechMonad Technology"
 
@@ -49,7 +49,7 @@ releaseProcess := Seq(
   pushChanges
 )
 
-lazy val kindProjectorSetting = "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
+lazy val kindProjectorSetting = "org.typelevel" %% "kind-projector" % "0.11.3" cross CrossVersion.full
 
 addCommandAlias("fmt", ";scalafmtSbt;scalafmt;test:scalafmt")
 addCommandAlias("cpl", ";compile;test:compile")

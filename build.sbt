@@ -2,8 +2,8 @@ import Dependencies._
 import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleasePlugin.autoImport._
 
-ThisBuild / scalaVersion     := "2.13.6"
-ThisBuild / organization     := "com.techmonad"
+ThisBuild / scalaVersion := "2.13.7"
+ThisBuild / organization := "com.techmonad"
 ThisBuild / organizationName := "TechMonad Technology"
 
 lazy val root = (project in file("."))

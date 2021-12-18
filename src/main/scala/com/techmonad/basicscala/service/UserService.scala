@@ -21,10 +21,10 @@ class UserService[F[_]: Mappable](repo: UserRepo[F]) extends ScalaLogger {
   def findUserById: WebRequest[UUID, Option[User]] = transformReq[UUID] andThen repo.find andThen transformRes[Option[User]]
   def registerUser: WebRequest[NewUser, User]      = transformReq[NewUser] andThen toUser andThen repo.insert andThen transformRes[User]
 
-  //Register User
+  // Register User
   val toUser: NewUser => User = _.into[User].withFieldComputed(_.id, _ => UUID.randomUUID()).transform
 
-  //Transform Req/Res
+  // Transform Req/Res
   private def transformReq[A]: TransformReq[A] = _.tap(r => info(s"Request received ID - [${r.requestId}]")).body
   private def transformRes[A]: TransformRes[A] = _.map(b => HttpResponse[A](UUID.randomUUID(), b).tap(r => info(s"Response - [$r]")))
 }

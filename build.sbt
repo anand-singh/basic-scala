@@ -2,16 +2,16 @@ import Dependencies._
 import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleasePlugin.autoImport._
 
-ThisBuild / scalaVersion := "2.13.6"
-ThisBuild / organization := "com.techmonad"
+ThisBuild / scalaVersion     := "2.13.6"
+ThisBuild / organization     := "com.techmonad"
 ThisBuild / organizationName := "TechMonad Technology"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "basic-scala",
-    scalastyleFailOnError := true,
+    name                    := "basic-scala",
+    scalastyleFailOnError   := true,
     scalastyleFailOnWarning := false,
-    scalafmtOnCompile := true,
+    scalafmtOnCompile       := true,
     libraryDependencies ++= Seq(cats, chimney, logback, logging, scalaTest)
   )
   .settings(addCompilerPlugin(kindProjectorSetting))

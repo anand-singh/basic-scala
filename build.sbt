@@ -2,7 +2,7 @@ import Dependencies._
 import sbtrelease.ReleaseStateTransformations._
 import sbtrelease.ReleasePlugin.autoImport._
 
-ThisBuild / scalaVersion     := "2.13.7"
+ThisBuild / scalaVersion     := "2.13.8"
 ThisBuild / organization     := "com.techmonad"
 ThisBuild / organizationName := "TechMonad Technology"
 

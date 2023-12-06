@@ -5,5 +5,5 @@ object Dependencies {
   lazy val logback   = "ch.qos.logback"              % "logback-classic" % "1.4.5"
   lazy val chimney   = "io.scalaland"               %% "chimney"         % "0.6.2"
   lazy val logging   = "com.typesafe.scala-logging" %% "scala-logging"   % "3.9.5"
-  lazy val scalaTest = "org.scalatest"              %% "scalatest"       % "3.2.14" % Test
+  lazy val scalaTest = "org.scalatest"              %% "scalatest"       % "3.2.17" % Test
 }
